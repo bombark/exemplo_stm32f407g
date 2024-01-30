@@ -30,9 +30,10 @@
 #include <sys/time.h>
 #include <sys/times.h>
 
+#include "uart.h"
 
 /* Variables */
-extern int __io_putchar(int ch) __attribute__((weak));
+// extern int __io_putchar(int ch) __attribute__((weak));
 extern int __io_getchar(void) __attribute__((weak));
 
 
@@ -77,16 +78,15 @@ __attribute__((weak)) int _read(int file, char *ptr, int len)
   return len;
 }
 
-__attribute__((weak)) int _write(int file, char *ptr, int len)
+__attribute__((weak)) int __io_putchar(char ch)
+{
+  return uart_write(&ch, 1);
+}
+
+int _write(int file, char *ptr, int len)
 {
   (void)file;
-  int DataIdx;
-
-  for (DataIdx = 0; DataIdx < len; DataIdx++)
-  {
-    __io_putchar(*ptr++);
-  }
-  return len;
+  return uart_write(ptr, len);
 }
 
 int _close(int file)

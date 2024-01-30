@@ -1,5 +1,5 @@
 #pragma once
 
-void led_green_on();
-void led_green_off();
-void led_green_toggle();
+void led_orange_on();
+void led_orange_off();
+void led_orange_toggle();

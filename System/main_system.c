@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 // Leds
 #include "led_green.h"
 #include "led_red.h"
@@ -15,9 +17,9 @@
 
 
 int main_system() {
-	uart_puts("Opa!\n");
+	printf("Opa!\n");
 	while(1) {
-		sleep_ms(500);
+		sleep_ms(1000);
 		led_blue_toggle();
 		led_orange_toggle();
 		led_red_toggle();
@@ -26,6 +28,8 @@ int main_system() {
 		if ( btn_blue_is_pressed() ) {
 			led_green_toggle();
 		}
+
+		printf("Opa! %d\n", 10);
 	}
 
 	return 0;
